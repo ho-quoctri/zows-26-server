@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Welcome to Zows</title>
+</head>
+<body style="font-family: sans-serif; line-height: 1.6; color: #333;">
+  <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e1e1e1; border-radius: 10px;">
+    <h1 style="color: #2c3e50;">Hello, <%= name %>!</h1>
+    <p>Welcome to <strong>ZOWS</strong>. We're excited to have you onboard!</p>
+    <p>Please use the code below to verify your account:</p>
+    <div style="text-align: center; margin: 30px 0;">
+      <span style="color: #3498db; font-size: 32px; font-weight: bold; letter-spacing: 5px; border: 2px dashed #3498db; padding: 10px 20px;">
+        <%= code %>
+      </span>
+    </div>
+    <p style="font-size: 12px; color: #7f8c8d;">This code will expire in 10 minutes. If you didn't request this, please ignore this email.</p>
+  </div>
+</body>
+</html>
