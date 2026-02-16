@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +15,17 @@ async function bootstrap() {
     forbidNonWhitelisted: true, // Báo lỗi nếu client gửi field lạ lên
     transform: true,       // Tự động convert kiểu dữ liệu
   }));
+
+ // setup Swagger
+ const config = new DocumentBuilder()
+    .setTitle('ZOWS API')
+    .setDescription('API description')
+    .setVersion('1.0')
+    // .addBearerAuth()
+    .build();
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, documentFactory);
+
   await app.listen(port);
 }
 bootstrap();
