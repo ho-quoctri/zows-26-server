@@ -1,12 +1,13 @@
 import { MailModule } from "@/mail/mail.module";
 import { AuthController } from "@/modules/auth/auth.controller";
 import { AuthService } from "@/modules/auth/auth.service";
+import { JwtRefreshStrategy } from "@/modules/auth/passport/jwt-refresh.strategy";
 import { JwtStrategy } from "@/modules/auth/passport/jwt.strategy";
 import { LocalStrategy } from "@/modules/auth/passport/local.strategy";
 import { User, UserSchema } from "@/modules/users/schema/user.schema";
 import { UsersModule } from "@/modules/users/users.module";
 import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PassportModule } from "@nestjs/passport";
@@ -27,7 +28,7 @@ const jwtFactory = {
     JwtModule.registerAsync(jwtFactory),
   ],
   exports: [AuthService],
-  providers: [AuthService, JwtStrategy, LocalStrategy],
+  providers: [AuthService, JwtStrategy, LocalStrategy, JwtRefreshStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

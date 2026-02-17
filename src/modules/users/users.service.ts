@@ -12,7 +12,6 @@ export class UsersService {
 
   async findByEmail(email: string) {
     const user = await this.userModel.findOne({ email });
-    if (!user) throw new NotFoundException('User not found');
     return user;
   }
 
@@ -51,6 +50,24 @@ export class UsersService {
     const user = await this.userModel.findById(id).select('-password');
     if (!user) throw new NotFoundException('User not found');
     return user;
+  }
+
+  // read one by refresh token
+  async findUserByRefreshToken(refreshToken: string, userId: string) {
+    return await this.userModel.findOne({
+      _id: userId,
+      refresh_token: refreshToken, // Giả sử bạn lưu token vào field này
+    });
+  }
+ // update refresh token
+  async updateUserRefreshToken(_id: any, refreshToken: string) {
+    return await this.userModel.updateOne(
+      { _id },
+      { 
+        // Lưu token mới vào DB
+        refreshToken: refreshToken 
+      }
+    );
   }
 
   // UPDATE

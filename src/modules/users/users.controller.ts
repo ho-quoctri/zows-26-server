@@ -1,3 +1,4 @@
+import { JwtAuthGuard } from '@/modules/auth/passport/jwt-auth.guard';
 import { CreateUserDto } from '@/modules/users/dto/create-user.dto';
 import { UpdateUserDto } from '@/modules/users/dto/update-user.dto';
 import { UsersService } from '@/modules/users/users.service';
