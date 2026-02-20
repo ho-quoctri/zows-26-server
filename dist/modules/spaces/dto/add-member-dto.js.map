@@ -1,0 +1,1 @@
+{"version":3,"file":"add-member-dto.js","sourceRoot":"","sources":["../../../../src/modules/spaces/dto/add-member-dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,qDAAsD;AAEtD,MAAa,YAAY;IAOvB,KAAK,CAAS;CACf;AARD,oCAQC;AADC;IANC,IAAA,qBAAW,EAAC;QACX,OAAO,EAAE,kBAAkB;QAC3B,WAAW,EAAE,gCAAgC;KAC9C,CAAC;IACD,IAAA,yBAAO,GAAE;IACT,IAAA,4BAAU,GAAE;;2CACC"}
