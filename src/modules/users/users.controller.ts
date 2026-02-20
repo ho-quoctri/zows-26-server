@@ -10,15 +10,25 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
-
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+@ApiTags('Users')
+@ApiBearerAuth('token') // Thêm dòng này để hiện biểu tượng khóa trong Swagger
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private usersService: UsersService) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
+  }
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  async myProfile(@Request() req) {
+    return req.user;
   }
 
   @Get()

@@ -3,7 +3,6 @@ import { AuthService } from '@/modules/auth/auth.service';
 import { LoginAuthDto } from '@/modules/auth/dto/login-auth.dto';
 import { RegisterAuthDto } from '@/modules/auth/dto/register-auth.dto';
 import { VerifyAccountDto } from '@/modules/auth/dto/verify-auth.dto';
-import { JwtAuthGuard } from '@/modules/auth/passport/jwt-auth.guard';
 import { JwtRefreshGuard } from '@/modules/auth/passport/jwt-refresh.guard';
 import { LocalAuthGuard } from '@/modules/auth/passport/local-auth.guard';
 import { clearRefreshTokenCookie, setRefreshTokenCookie } from '@/utils/helper';
@@ -67,11 +66,5 @@ export class AuthController {
   async logout(@Res({ passthrough: true }) res: Response) {
     clearRefreshTokenCookie(res);
     return { message: 'Logout successful' };
-  }
-
-  @Get('me')
-  @UseGuards(JwtAuthGuard)
-  async myProfile(@Request() req) {
-    return req.user;
   }
 }

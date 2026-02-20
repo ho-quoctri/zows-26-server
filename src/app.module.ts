@@ -6,6 +6,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from '@/modules/users/users.module';
 import { MailModule } from '@/mail/mail.module';
 import { AuthModule } from '@/modules/auth/auth.module';
+import { SpacesModule } from '@/modules/spaces/spaces.module';
+import { APP_GUARD, Reflector } from '@nestjs/core';
+import { JwtAuthGuard } from '@/modules/auth/passport/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -20,8 +23,15 @@ import { AuthModule } from '@/modules/auth/auth.module';
     AuthModule,
     UsersModule,
     MailModule,
+    SpacesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard, // Đặt Jw/tAuthGuard làm guard mặc định
+    },
+    Reflector
+  ],
 })
 export class AppModule {}
