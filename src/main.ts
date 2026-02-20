@@ -18,7 +18,8 @@ async function bootstrap() {
   );
 
   // setup Swagger
-  const config = new DocumentBuilder()
+  if (configService.get('NODE_ENV') === 'development') {
+    const config = new DocumentBuilder()
     .setTitle('ZOWS API')
     .setDescription('API description')
     .setVersion('1.0')
@@ -34,6 +35,8 @@ async function bootstrap() {
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
 
+  }
+  
   await app.listen(port);
 }
 bootstrap();
